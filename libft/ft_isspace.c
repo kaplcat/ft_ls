@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countwords.c                                    :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 19:59:05 by gbeqqo            #+#    #+#             */
-/*   Updated: 2018/12/14 17:33:19 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/12/10 14:52:38 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/10 16:28:05 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_countwords(char const *s, char c)
+int	ft_isspace(int c)
 {
-	unsigned int	i;
-	int				count;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] != '\0')
-			count++;
-		while (s[i] && (s[i] != c))
-			i++;
-	}
-	return (count);
+	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' ||
+		c == '\r' || c == ' ')
+		return (1);
+	return (0);
 }

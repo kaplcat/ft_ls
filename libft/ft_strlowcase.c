@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlowcase.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 17:49:32 by gbeqqo            #+#    #+#             */
-/*   Updated: 2018/12/13 17:52:33 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/12/17 15:59:09 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/17 16:22:42 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_nbrlen(int n)
+char	*ft_strlowcase(char *s)
 {
-	int	res;
+	int i;
 
-	res = 0;
-	if (n == 0)
-		return (0);
-	if (n < 0)
-		res = 1;
-	while (n != 0)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		n = n / 10;
-		++res;
+		if (s[i] >= 'A' && s[i] <= 'Z')
+			s[i] += 32;
+		i++;
 	}
-	return (res);
+	return (s);
 }

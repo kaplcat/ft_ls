@@ -3,52 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <gbeqqo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 16:16:44 by gbeqqo            #+#    #+#             */
-/*   Updated: 2019/07/23 16:31:19 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/11/30 16:45:23 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/13 13:49:45 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		get_nb_size(unsigned int nb)
+static	int	ft_base(int copy_n)
 {
-	unsigned int	size;
+	int base;
 
-	size = 0;
-	while (nb >= 10)
+	base = 0;
+	if (copy_n == 0)
+		return (1);
+	if (copy_n < 0)
 	{
-		nb /= 10;
-		++size;
+		copy_n *= -1;
+		base++;
 	}
-	return (size + 1);
+	while (copy_n > 0)
+	{
+		copy_n /= 10;
+		base++;
+	}
+	return (base);
 }
 
-char			*ft_itoa(int nbr)
+char		*ft_itoa(int n)
 {
-	char			*str;
-	unsigned int	nb;
-	unsigned int	index;
-	unsigned int	size;
+	char	*num;
+	int		base;
 
-	if (nbr < 0)
-		nb = (unsigned int)(nbr * -1);
-	else
-		nb = (unsigned int)nbr;
-	size = (unsigned int)get_nb_size(nb);
-	index = 0;
-	if (!(str = (char*)malloc(sizeof(char) * (size + 1 + (nbr < 0 ? 1 : 0)))))
-		return (0);
-	if (nbr < 0 && (str[index] = '-'))
-		size++;
-	index = size - 1;
-	while (nb >= 10)
+	base = ft_base(n);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648\0"));
+	if (!(num = ft_strnew(base)))
+		return (NULL);
+	if (n == 0)
+		num[0] = '0';
+	if (n < 0)
 	{
-		str[index--] = (char)(nb % 10 + 48);
-		nb /= 10;
+		num[0] = '-';
+		n *= -1;
 	}
-	str[index] = (char)(nb % 10 + 48);
-	str[size] = '\0';
-	return (str);
+	while (n > 0)
+	{
+		num[--base] = '0' + n % 10;
+		n /= 10;
+	}
+	return (num);
 }

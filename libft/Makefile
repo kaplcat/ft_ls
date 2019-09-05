@@ -1,34 +1,38 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gbeqqo <gbeqqo@student.42.fr>              +#+  +:+       +#+         #
+#    By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/11/24 19:23:08 by gbeqqo            #+#    #+#              #
-#    Updated: 2019/07/22 15:29:20 by gbeqqo           ###   ########.fr        #
+#    Created: 2018/12/17 14:18:36 by bellyn-t          #+#    #+#              #
+#    Updated: 2018/12/21 13:49:02 by bellyn-t         ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 NAME = libft.a
 
 SRC = *.c
 
-OBJ = *.o
+CC = gcc
 
-HEADER = ./includes
+FLAGS = -Wall -Werror -Wextra
 
-all:	$(NAME)
+INCLUDES = libft.h
+
+OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Werror -Wextra  $(SRC) -I $(HEADER)
+	$(CC) $(FLAGS) -c $(SRC) -I $(INCLUDES)
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
 clean:
-	/bin/rm -f *.o
+	rm  -f $(OBJ)
 
-fclean:	clean
-	/bin/rm -f $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
-re:	fclean all
+re: fclean all

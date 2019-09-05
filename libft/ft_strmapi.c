@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 15:38:57 by gbeqqo            #+#    #+#             */
-/*   Updated: 2018/12/13 18:33:14 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/11/30 14:17:06 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/11/30 14:18:47 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t			len;
-	unsigned int	i;
-	char			*new;
+	int				i;
+	unsigned int	j;
+	int				len;
+	char			*newstr;
 
-	if (f == NULL || s == NULL)
+	i = 0;
+	j = 0;
+	if (!(s && f))
 		return (NULL);
 	len = ft_strlen(s);
-	i = 0;
-	if (!(new = (char *)malloc(sizeof(char) * len + 1)))
+	if (!(newstr = (char *)malloc(sizeof(*newstr) * len + 1)))
 		return (NULL);
-	while (s[i])
+	while (i < len)
 	{
-		new[i] = f(i, s[i]);
+		newstr[i] = f(j, s[j]);
 		i++;
+		j++;
 	}
-	new[i] = '\0';
-	return (new);
+	newstr[i] = '\0';
+	return (newstr);
 }

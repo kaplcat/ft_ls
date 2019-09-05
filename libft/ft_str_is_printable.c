@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_spaceplus.c                                     :+:      :+:    :+:   */
+/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 19:24:43 by gbeqqo            #+#    #+#             */
-/*   Updated: 2018/12/14 17:32:28 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/12/17 16:16:11 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/17 16:22:16 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_spaceplus(char const *s)
+int	ft_str_is_printable(char *s)
 {
 	int i;
 
 	i = 0;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+	while (s[i] != '\0')
+	{
+		if (!(s[i] >= 32 && s[i] <= 126))
+			return (0);
 		i++;
-	return (i);
+	}
+	return (1);
 }

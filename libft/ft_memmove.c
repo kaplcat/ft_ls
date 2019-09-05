@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 16:58:57 by gbeqqo            #+#    #+#             */
-/*   Updated: 2018/12/03 18:11:33 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/11/30 15:11:55 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/13 14:38:04 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,16 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char *dest;
-	char *source;
-	char *final;
+	unsigned char	*dst_tmp;
+	unsigned char	*src_tmp;
 
-	dest = (char *)dst;
-	source = (char *)src;
-	final = dest;
-	if (dest > source)
-	{
-		source = source + len - 1;
-		dest = dest + len - 1;
-		while (len-- > 0)
-			*dest-- = *source--;
-	}
-	else
-	{
-		while (len-- > 0)
-			*dest++ = *source++;
-	}
-	return (final);
+	dst_tmp = (unsigned char*)dst;
+	src_tmp = (unsigned char*)src;
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	if (src_tmp > dst_tmp)
+		return (ft_memcpy(dst, src, len));
+	while (len-- > 0)
+		dst_tmp[len] = (unsigned char)src_tmp[len];
+	return ((void *)dst_tmp);
 }

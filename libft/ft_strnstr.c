@@ -3,37 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 17:54:15 by gbeqqo            #+#    #+#             */
-/*   Updated: 2018/12/14 18:56:38 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/12/03 14:48:45 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/13 17:15:51 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *hayst, const char *need, size_t len)
+char	*ft_strnstr(const char *hay, const char *nee, size_t len)
 {
-	const char	*lim;
-	int			l;
+	size_t little_len;
 
-	lim = hayst + len;
-	if (!*need)
-		return ((char *)hayst);
-	while (*hayst && hayst < lim)
+	if (*nee == '\0')
+		return ((char *)hay);
+	little_len = ft_strlen(nee);
+	while (*hay != '\0' && little_len <= len--)
 	{
-		l = 0;
-		while (*hayst == *need && hayst < lim)
-		{
-			hayst++;
-			need++;
-			l++;
-			if (!*need)
-				return ((char *)hayst - l);
-		}
-		hayst = hayst - l;
-		need = need - l;
-		hayst++;
+		if (*hay == *nee &&
+			ft_strncmp(hay, nee, little_len) == 0)
+			return ((char *)hay);
+		hay++;
 	}
 	return (NULL);
 }

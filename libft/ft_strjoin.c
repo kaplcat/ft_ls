@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 17:49:13 by gbeqqo            #+#    #+#             */
-/*   Updated: 2019/01/17 16:29:47 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/11/30 13:44:26 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/10 15:02:40 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,20 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	char	*mainstr;
+	size_t	len;
+	char	*str1;
+	char	*str2;
 
+	str1 = (char*)s1;
+	str2 = (char *)s2;
 	if (!s1 || !s2)
 		return (NULL);
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (str == NULL)
+	len = ft_strlen(s1) + ft_strlen(s2);
+	mainstr = ft_strnew(len);
+	if (!mainstr)
 		return (NULL);
-	while (s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2[j] != '\0')
-	{
-		str[i + j] = s2[j];
-		j++;
-	}
-	str[i + j] = '\0';
-	return (str);
+	ft_strcpy(mainstr, str1);
+	ft_strcat(mainstr, str2);
+	return (mainstr);
 }

@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
+/*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbeqqo <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bellyn-t <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 16:06:37 by gbeqqo            #+#    #+#             */
-/*   Updated: 2018/12/17 16:10:42 by gbeqqo           ###   ########.fr       */
+/*   Created: 2018/12/17 16:09:04 by bellyn-t          #+#    #+#             */
+/*   Updated: 2018/12/17 16:15:13 by bellyn-t         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_recursive_factorial(int nb)
+char	*ft_strupcase(char *s)
 {
-	if (nb == 0)
-		return (1);
-	if (nb < 0)
-		return (0);
-	return (nb * ft_recursive_factorial(nb - 1));
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] >= 'a' && s[i] <= 'z')
+			s[i] -= 32;
+		i++;
+	}
+	return (s);
 }
